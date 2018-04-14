@@ -22,10 +22,10 @@ from django.conf.global_settings import *
 # 应用基本信息配置 (请按照说明修改)
 # ==============================================================================
 # 在蓝鲸智云开发者中心 -> 点击应用ID -> 基本信息 中获取 APP_ID 和 APP_TOKEN 的值
-APP_ID = 'SQLAudit'
-APP_TOKEN = ''
+APP_ID = 'sqlaudit'
+APP_TOKEN = '33e7ce01-c1c9-4205-9e5d-3cc41fdddda1'
 # 蓝鲸智云开发者中心的域名，形如：http://paas.bking.com
-BK_PAAS_HOST = 'http://dev.bking.com'
+BK_PAAS_HOST = 'http://paas.dianjoy.com:80'
 
 # 是否启用celery任务
 IS_USE_CELERY = True
@@ -93,7 +93,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'account.middlewares.LoginMiddleware',   # 登录鉴权中间件
+   # 'account.middlewares.LoginMiddleware',   # 登录鉴权中间件
     'common.middlewares.CheckXssMiddleware',  # Xss攻击处理中间件
 )
 
@@ -109,6 +109,7 @@ INSTALLED_APPS = (
     'app_control',
     'account',
     'home_application',
+    'dashboard',
 )
 
 # ==============================================================================
@@ -133,11 +134,14 @@ PYTHON_BIN = os.path.dirname(sys.executable)
 # 所以在引用静态资源的地方，都需要加上这个版本号，如：<script src="/a.js?v=${STATIC_VERSION}"></script>；
 # 如果静态资源修改了以后，上线前修改这个版本号即可
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
+   # os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(PROJECT_ROOT, 'templates/dashboard'),
 )
 STATIC_VERSION = 0.1
 # 应用本地静态资源目录
 STATIC_URL = '%sstatic/' % SITE_URL
+
+# DASHBOARD_STATIC_URL = '%stemplates/dashboard/' % SITE_URL
 
 ROOT_URLCONF = 'urls'
 # ==============================================================================

@@ -58,6 +58,7 @@ def render_mako(template_name, dictionary={}, context_instance=None):
 
 
 def render_mako_context(request, template_name, dictionary={}):
+    # type: (object, object, object) -> object
     """
     render the mako template with the RequestContext and return the HttpResponse
     """
