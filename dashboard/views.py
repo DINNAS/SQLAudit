@@ -46,6 +46,7 @@ def home(request):
 
     try:
         http_post = requests.post(url=url, params=params, headers=headers)
+        print http_post.status_code
         if http_post.status_code == 200:
             if http_post['bk_error_code'] == 0:
                 host_set_num = http_post['data']['count']
