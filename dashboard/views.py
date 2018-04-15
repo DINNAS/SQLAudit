@@ -24,7 +24,7 @@ def home(request):
     """
     VERSION = "v3.0.6"
     BK_PAAS_HOST = "http://paas.dianjoy.com:80"
-    url = "http://{host}/api/{version}/hosts/search".format(host=BK_PAAS_HOST, version=VERSION)
+    url = "http://{host}/api/c/compapi/hosts/search".format(host=BK_PAAS_HOST, version=VERSION)
     headers = {
     }
     params = {
