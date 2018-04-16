@@ -22,47 +22,43 @@ def home(request):
     """
     首页
     """
-    VERSION = "v3.0.6"
-    BK_PAAS_HOST = "http://paas.dianjoy.com:80"
-    url = "http://{host}/api/c/compapi/hosts/search".format(host=BK_PAAS_HOST, version=VERSION)
-    headers = {
-    }
+    #params
+    app_code = settings.APP_ID
+    app_secret = settings.APP_TOKEN
+    username = 'admin'
+    app_id = 2
+
     params = {
-        "ip":{
-            "data":[
+        'app_code': app_code,
+        'app_secret': app_secret,
+        'username': username,
+        'app_id': app_id
+    }
 
-            ],
-            "exact":1,
-            "flag":"bk_host_innerip|bk_host_outerip"
-        },
-
-        "page":{
-            "start":0,
-            "limit":10,
-            "sort":"bk_host_name"
-        },
-        "pattern":""
-        }
+    BK_PAAS_HOST = "http://paas.dianjoy.com:80"
+    url = "http://{host}/api/c/compapi/cc/get_app_host_list/".format(host=BK_PAAS_HOST)
 
     try:
-        http_post = requests.post(url=url, params=params, headers=headers)
-        print http_post.status_code
-        if http_post.status_code == 200:
-            if http_post['bk_error_code'] == 0:
-                host_set_num = http_post['data']['count']
-                return host_set_num
+        http_get = requests.get(url=url, params=params)
+        if http_get.status_code == 200:
+            if http_get['code'] == '00':
+                print http_get
+                host_list = http_get['data']
+                host_sum = len(host_list)
+                return host_sum
             else:
-                logger.error(http_post)
+                logger.error(http_get)
                 sys.exit(2)
         else:
-            logger.error(http_post.text)
+            logger.error(http_get.text)
             sys.exit(3)
     except Exception:
         logger.error(traceback.format_exc())
         sys.exit(4)
 
-    if host_set_num:
-        host_count = {'host_inv': host_set_num}
+    if host_sum:
+        host_count = {'host_inv': host_sum}
+    #host_count = {'host_inv': 432}
 
     return render_mako_context(request, '/dashboard/dashboard.html', host_count)
 
