@@ -26,7 +26,7 @@ def home(request):
     app_code = settings.APP_ID
     app_secret = settings.APP_TOKEN
     username = 'admin'
-    app_id = 2
+    app_id = '2'
 
     params = {
         'app_code': app_code,
