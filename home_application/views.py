@@ -12,11 +12,48 @@ See the License for the specific language governing permissions and limitations 
 from common.mymako import render_mako_context
 
 
-def home(request):
+def dashboard(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/home.html')
+    #params
+    app_code = settings.APP_ID
+    app_secret = settings.APP_TOKEN
+    username = 'admin'
+    app_id = '2'
+
+    params = {
+        'app_code': app_code,
+        'app_secret': app_secret,
+        'username': username,
+        'app_id': app_id
+    }
+
+    BK_PAAS_HOST = "http://paas.dianjoy.com"
+    url = "http://{host}/api/c/compapi/cc/get_app_host_list/".format(host=BK_PAAS_HOST)
+
+    try:
+        http_get = requests.get(url=url, params=params)
+        if http_get.status_code == 200:
+            if http_get['code'] == '00':
+                print http_get
+                host_list = http_get['data']
+                host_sum = len(host_list)
+                return host_sum
+            else:
+                logger.error(http_get)
+                sys.exit(2)
+        else:
+            logger.error(http_get.text)
+            sys.exit(3)
+    except Exception:
+        logger.error(traceback.format_exc())
+        sys.exit(4)
+
+    if host_sum:
+        host_count = {'host_inv': host_sum}
+
+    return render_mako_context(request, '/home_application/dashboard.html', host_count)
 
 
 def dev_guide(request):
