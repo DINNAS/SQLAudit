@@ -48,7 +48,7 @@ def dashboard(request):
 
     try:
         http_get = requests.get(url=url, params=params)
-        host_count = {'host_inv': len(http_get['data'])}
+        host_count = {'host_inv': http_get['data']}
         # if http_get.status_code == 200:
         #     if http_get['code'] == '00':
         #         print http_get
