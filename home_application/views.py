@@ -26,7 +26,6 @@ logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('log')
 logger.setLevel(logging.DEBUG)
 
-
 def dashboard(request):
     """
     首页
@@ -47,26 +46,27 @@ def dashboard(request):
     BK_PAAS_HOST = "http://paas.dianjoy.com"
     url = "http://{host}/api/c/compapi/cc/get_app_host_list/".format(host=BK_PAAS_HOST)
 
-    try:
-        http_get = requests.get(url=url, params=params)
-        if http_get.status_code == 200:
-            if http_get['code'] == '00':
-                print http_get
-                host_list = http_get['data']
-                host_sum = len(host_list)
-                return host_sum
-            else:
-                logger.error(http_get)
-                sys.exit(2)
-        else:
-            logger.error(http_get.text)
-            sys.exit(3)
-    except Exception:
-        logger.error(traceback.format_exc())
-        sys.exit(4)
-
-    if host_sum:
-        host_count = {'host_inv': host_sum}
+    # try:
+    #     http_get = requests.get(url=url, params=params)
+    #     if http_get.status_code == 200:
+    #         if http_get['code'] == '00':
+    #             print http_get
+    #             host_list = http_get['data']
+    #             host_sum = len(host_list)
+    #             return host_sum
+    #         else:
+    #             logger.error(http_get)
+    #             sys.exit(2)
+    #     else:
+    #         logger.error(http_get.text)
+    #         sys.exit(3)
+    # except Exception:
+    #     logger.error(traceback.format_exc())
+    #     sys.exit(4)
+    #
+    # if host_sum:
+    #     host_count = {'host_inv': host_sum}
+    host_count = {'host_inv': 231}
 
     return render_mako_context(request, '/home_application/dashboard.html', host_count)
 
