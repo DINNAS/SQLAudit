@@ -12,6 +12,21 @@ See the License for the specific language governing permissions and limitations 
 from common.mymako import render_mako_context
 
 
+import requests
+import traceback
+import logging
+import sys
+
+from django.conf import settings
+# 公共URL配置
+
+# set the logger
+FORMAT = '[%(asctime)s %(filename)s(line:%(lineno)d) %(levelname)s] %(message)s'
+logging.basicConfig(format=FORMAT)
+logger = logging.getLogger('log')
+logger.setLevel(logging.DEBUG)
+
+
 def dashboard(request):
     """
     首页
