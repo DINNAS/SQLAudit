@@ -36,12 +36,12 @@ def dashboard(request):
     app_secret = settings.APP_TOKEN
     bk_token = request.COOKIES['bk_token']
     app_id = '2'
-    
+
     params = {
         'app_code': app_code,
         'app_secret': app_secret,
-        'username': username,
-        'app_id': app_id
+        'bk_token': bk_token,
+        'app_id': app_id,
     }
 
     BK_PAAS_HOST = "paas.dianjoy.com"
@@ -66,8 +66,7 @@ def dashboard(request):
         logger.error(traceback.format_exc())
         sys.exit(4)
 
-    if host_sum:
-        host_count = {'host_inv': host_sum}
+    host_count = {'host_inv': host_sum}
 
     return render_mako_context(request, '/home_application/dashboard.html', host_count)
 
