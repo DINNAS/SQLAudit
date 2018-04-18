@@ -55,7 +55,6 @@ def dashboard(request):
             if http_get_data['code'] == '00':
                 host_list = http_get_data['data']
                 host_sum = len(host_list)
-                return host_sum
             else:
                 logger.error(http_get_data)
                 sys.exit(2)
