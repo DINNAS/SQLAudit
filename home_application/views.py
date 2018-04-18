@@ -68,6 +68,7 @@ def dashboard(request):
 
     host_count = {'host_inv': host_sum}
 
+
     return render_mako_context(request, '/home_application/dashboard.html', host_count)
 
 
