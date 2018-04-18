@@ -19,8 +19,8 @@
       <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/conf/default.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="125" column="11" lean-forward="true" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
+            <state relative-caret-position="2436">
+              <caret line="192" column="26" selection-start-line="192" selection-start-column="18" selection-end-line="192" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -71,8 +71,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home_application/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+            <state relative-caret-position="-111">
+              <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
               <folding>
                 <element signature="e#695#740#0" expanded="true" />
               </folding>
@@ -88,6 +88,11 @@
         <option value="HTML File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>BK_TOKEN</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -336,15 +341,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/default.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="125" column="11" lean-forward="true" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
+        <state relative-caret-position="2436">
+          <caret line="192" column="26" selection-start-line="192" selection-start-column="18" selection-end-line="192" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/home_application/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+        <state relative-caret-position="-111">
+          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding>
             <element signature="e#695#740#0" expanded="true" />
           </folding>

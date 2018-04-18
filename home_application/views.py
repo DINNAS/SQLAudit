@@ -16,6 +16,7 @@ import requests
 import traceback
 import logging
 import sys
+import json
 
 from django.conf import settings
 # 公共URL配置
@@ -33,9 +34,9 @@ def dashboard(request):
     #params
     app_code = settings.APP_ID
     app_secret = settings.APP_TOKEN
-    username = 'admin'
+    bk_token = request.COOKIES['bk_token']
     app_id = '2'
-
+    
     params = {
         'app_code': app_code,
         'app_secret': app_secret,
@@ -43,30 +44,30 @@ def dashboard(request):
         'app_id': app_id
     }
 
-    BK_PAAS_HOST = "http://paas.dianjoy.com"
+    BK_PAAS_HOST = "paas.dianjoy.com"
     url = "http://{host}/api/c/compapi/cc/get_app_host_list/".format(host=BK_PAAS_HOST)
 
-    # try:
-    #     http_get = requests.get(url=url, params=params)
-        # if http_get.status_code == 200:
-        #     if http_get['code'] == '00':
-        #         print http_get
-        #         host_list = http_get['data']
-        #         host_sum = len(host_list)
-        #         return host_sum
-        #     else:
-        #         logger.error(http_get)
-        #         sys.exit(2)
-        # else:
-        #     logger.error(http_get.text)
-        #     sys.exit(3)
-    # except Exception:
-    #     logger.error(traceback.format_exc())
-    #     sys.exit(4)
+    try:
+        http_get = requests.get(url=url, params=params)
+        if http_get.status_code == 200:
+            http_get = http_get.text.encode('utf-8')
+            http_get_data = json.loads(http_get)
+            if http_get_data['code'] == '00':
+                host_list = http_get_data['data']
+                host_sum = len(host_list)
+                return host_sum
+            else:
+                logger.error(http_get_data)
+                sys.exit(2)
+        else:
+            logger.error(http_get.text)
+            sys.exit(3)
+    except Exception:
+        logger.error(traceback.format_exc())
+        sys.exit(4)
 
-    # if host_sum:
-    #     host_count = {'host_inv': host_sum}
-    host_count = {'host_inv': 231}
+    if host_sum:
+        host_count = {'host_inv': host_sum}
 
     return render_mako_context(request, '/home_application/dashboard.html', host_count)
 
