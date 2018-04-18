@@ -34,7 +34,7 @@ def dashboard(request):
     #params
     app_code = settings.APP_ID
     app_secret = settings.APP_TOKEN
-    bk_token = request.COOKIES['bk_token']
+    bk_token = 'iqLN1T7WGP4MheNtf_Q4thxvFowk9T_7PadZ-rY1Vew'
     app_id = '2'
 
     params = {
